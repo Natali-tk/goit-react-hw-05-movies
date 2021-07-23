@@ -16,7 +16,6 @@ export default function HomePage() {
         {movies.map(movie => (
           <li key={movie.id} className={s.moviesLink}>
             <Link className={s.movieLink} to={`/movies/${movie.id}`}>
-              {' '}
               {movie.title}
             </Link>
           </li>
