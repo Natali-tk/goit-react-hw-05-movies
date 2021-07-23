@@ -8,8 +8,9 @@ export default function MovieDetailsPage() {
   console.log(movieId);
 
   useEffect(() => {
-    fetchMovieDetails(movieId).then(setMovie);
+    fetchMovieDetails(movieId).then(movie => setMovie(movie));
   }, [movieId]);
+
   return (
     <>
       <h2>Это фильм</h2>
