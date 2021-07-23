@@ -1,0 +1,15 @@
+.title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  line-height: 1.18;
+  color: darkslategrey;
+}
+.moviesList {
+  font-size: 18px;
+  line-height: 1.18;
+  color: darkslategray;
+}
+.movieLink {
+  text-decoration: none;
+  color: darkslategray;
+}
