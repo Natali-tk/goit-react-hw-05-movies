@@ -8,7 +8,7 @@ export default function MovieDetailsPage() {
   console.log(movieId);
 
   useEffect(() => {
-    fetchMovieDetails(movieId).then(movie => setMovie(movie));
+    fetchMovieDetails(379686).then(movie => setMovie(movie));
   }, [movieId]);
 
   return (
