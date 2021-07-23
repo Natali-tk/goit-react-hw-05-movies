@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchTrandingMovies } from '../services/movies-api';
-import s from '../components/MovieDetailsPage/Movies.module.css';
+import s from '../components/MoviePageDetails/MoviePageDetails.module.css';
 import { Link } from 'react-router-dom';
 
 export default function HomePage() {
