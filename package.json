@@ -45,7 +45,8 @@
     "husky": "^7.0.1",
     "lint-staged": "^11.0.1",
     "prettier": "^2.3.2",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-toastify": "^7.0.4"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",

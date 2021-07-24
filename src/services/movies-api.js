@@ -7,24 +7,24 @@ export const fetchTrandingMovies = async () => {
   return response.data.results;
 };
 
-export const fetchMovie = async ({ query }) => {
+export const fetchMovie = async query => {
   const response = await axios.get(
     `search/movie?api_key=${key}&query=${query}&page=1&include_adult=false`,
   );
   return response.data.results;
 };
 
-export const fetchMovieDetails = async ({ movieId }) => {
+export const fetchMovieDetails = async movieId => {
   const response = await axios.get(`movie/${movieId}?api_key=${key}`);
   return response.data;
 };
 
-export const fetchMovieCredits = async ({ movieId }) => {
+export const fetchMovieCredits = async movieId => {
   const response = await axios.get(`movie/${movieId}/credits?api_key=${key}`);
   return response.data.cast;
 };
 
-export const fetchMovieReviews = async ({ movieId }) => {
+export const fetchMovieReviews = async movieId => {
   const response = await axios.get(
     `movie/${movieId}/reviews?api_key=${key}&page=1`,
   );

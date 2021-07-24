@@ -1,4 +1,6 @@
 import { Switch, Route } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 import Container from './components/Container/Container';
 import AppBar from './components/AppBar/AppBar';
 import HomePage from './views/HomePage';
@@ -27,6 +29,7 @@ export default function App() {
           <NotFoundViews />
         </Route>
       </Switch>
+      <ToastContainer position="bottom-left" autoClose={3000} />
     </Container>
   );
 }
