@@ -5,11 +5,70 @@
   color: darkslategrey;
 }
 .moviesList {
+  display: grid;
+  max-width: calc(100vw - 48px);
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-gap: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 18px;
   line-height: 1.18;
-  color: darkslategray;
 }
 .movieLink {
   text-decoration: none;
   color: darkslategray;
+}
+.addLink {
+  display: inline-block;
+  text-decoration: underline;
+  padding: 12px;
+  font-weight: 800;
+  color: #11455c;
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+.addLinkList {
+  list-style: none;
+  border-bottom: 5px solid #11455c;
+  padding-bottom: 20px;
+}
+
+.movieDetails {
+  display: flex;
+  font-weight: 600;
+  font-size: 16px;
+  border-bottom: 5px solid #11455c;
+  padding-bottom: 20px;
+}
+h2 {
+  font-weight: 800;
+  color: #2a363b;
+  font-size: 18px;
+}
+.movieInfo {
+  margin-left: 20px;
+}
+.movieName {
+  font-weight: 800;
+  font-size: 22px;
+  color: #2a363b;
+}
+.imgMovie {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.imgMovie:hover {
+  transform: scale(1.03);
+  cursor: zoom-in;
 }

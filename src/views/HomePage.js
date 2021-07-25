@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../components/Loader/Loader';
+import noPoster from '../images/noposter.jpg';
 import { fetchTrandingMovies } from '../services/movies-api';
 import s from '../components/MovieDetailsPage/MovieDetailsPage.module.css';
 import { Link } from 'react-router-dom';
@@ -9,7 +10,7 @@ import { Link } from 'react-router-dom';
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
   const [reqStatus, setReqStatus] = useState('idle');
-
+  const movieUrl = 'https://image.tmdb.org/t/p/w300';
   useEffect(() => {
     async function onFetchTrandingMovies() {
       try {
@@ -37,7 +38,18 @@ export default function HomePage() {
           {movies.map(movie => (
             <li key={movie.id} className={s.moviesLink}>
               <Link className={s.movieLink} to={`/movies/${movie.id}`}>
-                {movie.title}
+                <img
+                  className={s.imgMovie}
+                  src={
+                    movie.poster_path
+                      ? `${movieUrl}${movie.poster_path}`
+                      : noPoster
+                  }
+                  alt={movie.title}
+                />
+                <p>
+                  {movie.title} ( {new Date(movie.release_date).getFullYear()})
+                </p>
               </Link>
             </li>
           ))}
