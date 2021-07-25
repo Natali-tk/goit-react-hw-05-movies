@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PropTypes from 'prop-types';
-import s from './Searchbar.module.css';
+import s from './SearchBar.module.css';
 
 export default function Searchbar({ onSubmit }) {
   const [query, setQuery] = useState('');
@@ -22,7 +22,7 @@ export default function Searchbar({ onSubmit }) {
   };
 
   return (
-    <>
+    <div className={s.searchbar}>
       <form className={s.searchForm} onSubmit={handleSubmit}>
         <input
           className={s.searchInput}
@@ -37,7 +37,7 @@ export default function Searchbar({ onSubmit }) {
           Search
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

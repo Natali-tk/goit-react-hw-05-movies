@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {
-  Link,
+  NavLink,
   Route,
   Switch,
   useHistory,
@@ -17,7 +17,7 @@ import Cast from '../components/Cast/Cast';
 import Reviews from '../components/Reviews/Reviews';
 import ButtonGoBack from '../components/ButtonGoBack/ButtonGoBack';
 import s from '../components/MovieDetailsPage/MovieDetailsPage.module.css';
-
+import NotFoundView from './NotFoundViews';
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState([]);
 
@@ -47,15 +47,7 @@ export default function MovieDetailsPage() {
   }, [movieId]);
 
   const handleBack = () => {
-    if (!location.state) {
-      history.push('/');
-      return;
-    }
-
-    history.push({
-      pathname: '/movies',
-      search: location.state.from.search,
-    });
+    history.push(location?.state?.from ?? '/');
   };
 
   return (
@@ -65,14 +57,22 @@ export default function MovieDetailsPage() {
       <MovieDetailInfo movie={movie} />
       <ul className={s.addLinkList}>
         <li>
-          <Link to={`${url}/cast`} className={s.addLink}>
+          <NavLink
+            to={`${url}/cast`}
+            className={s.addLink}
+            activeClassName={s.activeAddLink}
+          >
             Cast
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to={`${url}/reviews`} className={s.addLink}>
+          <NavLink
+            to={`${url}/reviews`}
+            className={s.addLink}
+            activeClassName={s.activeAddLink}
+          >
             Reviews
-          </Link>
+          </NavLink>
         </li>
       </ul>
       <Switch>
@@ -83,6 +83,7 @@ export default function MovieDetailsPage() {
           <Reviews movieId={movieId} />
         </Route>
       </Switch>
+      {reqStatus === 'rejected' && <NotFoundView />}
     </>
   );
 }

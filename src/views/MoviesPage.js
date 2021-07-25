@@ -18,7 +18,6 @@ export default function MoviesPage() {
 
   useEffect(() => {
     if (!query) return;
-
     async function onFetchMovie() {
       try {
         setReqStatus('pending');
@@ -43,18 +42,13 @@ export default function MoviesPage() {
     });
   });
 
-  useEffect(() => {
-    if (location.search !== '') return;
-    history.push({ ...location, search: `query=${query}` });
-  }, [history, location]);
-
   const handleSubmit = query => {
-    setQuery(query);
-    setMoviesByQuery([]);
     history.push({
       ...location,
       search: `query=${query}`,
     });
+    setQuery(query);
+    setMoviesByQuery([]);
   };
 
   return (
@@ -65,7 +59,13 @@ export default function MoviesPage() {
         <ul className={s.moviesList}>
           {moviesByQuery.map(movie => (
             <li key={movie.id} className={s.moviesLink}>
-              <Link className={s.movieLink} to={`/movies/${movie.id}`}>
+              <Link
+                className={s.movieLink}
+                to={{
+                  pathname: `/movies/${movie.id}`,
+                  state: { from: location },
+                }}
+              >
                 <img
                   className={s.imgMovie}
                   src={

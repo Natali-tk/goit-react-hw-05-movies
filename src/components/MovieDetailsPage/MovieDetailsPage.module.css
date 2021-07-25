@@ -40,6 +40,10 @@
   border-bottom: 5px solid #11455c;
   padding-bottom: 20px;
 }
+.addLinkActive {
+  composes: addLink;
+  color: #2196f3;
+}
 
 .movieDetails {
   display: flex;
