@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../components/Loader/Loader';
 import noPoster from '../images/noposter.jpg';
 import { fetchTrandingMovies } from '../services/movies-api';
 import s from '../components/MovieDetailsPage/MovieDetailsPage.module.css';
-import { Link } from 'react-router-dom';
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -58,3 +59,12 @@ export default function HomePage() {
     </>
   );
 }
+
+HomePage.propTypes = {
+  movies: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    poster_path: PropTypes.string,
+    title: PropTypes.string.isRequired,
+  }),
+};
+HomePage.defaultProps = { poster_path: noPoster };

@@ -16,12 +16,8 @@ const HomePage = lazy(() =>
 const MoviesPage = lazy(() =>
   import('./views/MoviesPage.js' /* webpackChunkName: "movies-view" */),
 );
-const MovieDetailsPage = lazy(() =>
-  import('./views/MovieDetailsPage.js' /* webpackChunkName: "movie-view" */),
-);
-const NotFoundViews = lazy(() =>
-  import('./views/NotFoundViews.js' /* webpackChunkName: "notFound-view" */),
-);
+const MovieDetailsPage = lazy(() => import('./views/MovieDetailsPage.js'));
+const NotFoundViews = lazy(() => import('./views/NotFoundViews.js'));
 
 export default function App() {
   return (

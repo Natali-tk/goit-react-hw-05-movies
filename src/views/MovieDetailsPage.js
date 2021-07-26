@@ -14,11 +14,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../components/Loader/Loader';
 import { fetchMovieDetails } from '../services/movies-api';
 import MovieDetailInfo from '../components/MovieDetailsPage/MovieDetailInfo';
-// import Cast from '../components/Cast/Cast';
-// import Reviews from '../components/Reviews/Reviews';
 import ButtonGoBack from '../components/ButtonGoBack/ButtonGoBack';
 import s from '../components/MovieDetailsPage/MovieDetailsPage.module.css';
 import NotFoundView from './NotFoundViews';
+
 const Cast = lazy(() =>
   import('../components/Cast/Cast.js' /* webpackChunkName: "cast" */),
 );
@@ -34,7 +33,6 @@ export default function MovieDetailsPage() {
   const { url, path } = useRouteMatch();
   const history = useHistory();
   const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     async function onFetchMoviesDetails() {
@@ -66,7 +64,10 @@ export default function MovieDetailsPage() {
       <ul className={s.addLinkList}>
         <li>
           <NavLink
-            to={`${url}/cast`}
+            to={{
+              pathname: `${url}/cast`,
+              state: { from: location.state ? location.state.from : '/' },
+            }}
             className={s.addLink}
             activeClassName={s.addLinkActive}
           >
@@ -75,7 +76,10 @@ export default function MovieDetailsPage() {
         </li>
         <li>
           <NavLink
-            to={`${url}/reviews`}
+            to={{
+              pathname: `${url}/reviews`,
+              state: { from: location.state ? location.state.from : '/' },
+            }}
             className={s.addLink}
             activeClassName={s.addLinkActive}
           >
