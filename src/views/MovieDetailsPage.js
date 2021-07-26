@@ -68,7 +68,7 @@ export default function MovieDetailsPage() {
           <NavLink
             to={`${url}/cast`}
             className={s.addLink}
-            activeClassName={s.activeAddLink}
+            activeClassName={s.addLinkActive}
           >
             Cast
           </NavLink>
@@ -77,7 +77,7 @@ export default function MovieDetailsPage() {
           <NavLink
             to={`${url}/reviews`}
             className={s.addLink}
-            activeClassName={s.activeAddLink}
+            activeClassName={s.addLinkActive}
           >
             Reviews
           </NavLink>

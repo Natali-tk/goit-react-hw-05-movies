@@ -20,7 +20,6 @@ export default function MoviesPage() {
     if (location.search === '') {
       return;
     }
-
     const newSearch = new URLSearchParams(location.search).get('query');
     setQuery(newSearch);
   }, [location.search]);
