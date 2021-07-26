@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 import {
   NavLink,
   Route,
@@ -13,11 +14,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../components/Loader/Loader';
 import { fetchMovieDetails } from '../services/movies-api';
 import MovieDetailInfo from '../components/MovieDetailsPage/MovieDetailInfo';
-import Cast from '../components/Cast/Cast';
-import Reviews from '../components/Reviews/Reviews';
+// import Cast from '../components/Cast/Cast';
+// import Reviews from '../components/Reviews/Reviews';
 import ButtonGoBack from '../components/ButtonGoBack/ButtonGoBack';
 import s from '../components/MovieDetailsPage/MovieDetailsPage.module.css';
 import NotFoundView from './NotFoundViews';
+const Cast = lazy(() =>
+  import('../components/Cast/Cast.js' /* webpackChunkName: "cast" */),
+);
+const Reviews = lazy(() =>
+  import('../components/Reviews/Reviews.js' /* webpackChunkName: "cast" */),
+);
+
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState([]);
 
@@ -75,14 +83,16 @@ export default function MovieDetailsPage() {
           </NavLink>
         </li>
       </ul>
-      <Switch>
-        <Route path={`${path}/cast`} exact>
-          <Cast movieId={movieId} />
-        </Route>
-        <Route path={`${path}/reviews`} exact>
-          <Reviews movieId={movieId} />
-        </Route>
-      </Switch>
+      <Suspense fallback={<Loader />}>
+        <Switch>
+          <Route path={`${path}/cast`} exact>
+            <Cast movieId={movieId} />
+          </Route>
+          <Route path={`${path}/reviews`} exact>
+            <Reviews movieId={movieId} />
+          </Route>
+        </Switch>
+      </Suspense>
       {reqStatus === 'rejected' && <NotFoundView />}
     </>
   );
