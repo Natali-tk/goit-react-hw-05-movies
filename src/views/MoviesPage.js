@@ -17,6 +17,15 @@ export default function MoviesPage() {
   const movieUrl = 'https://image.tmdb.org/t/p/w300';
 
   useEffect(() => {
+    if (location.search === '') {
+      return;
+    }
+
+    const newSearch = new URLSearchParams(location.search).get('query');
+    setQuery(newSearch);
+  }, [location.search]);
+
+  useEffect(() => {
     if (!query) return;
     async function onFetchMovie() {
       try {
@@ -25,6 +34,8 @@ export default function MoviesPage() {
         setReqStatus('resolve');
         if (moviesByQuery.length === 0) {
           toast.error('Oops, no such movie');
+          setQuery('');
+          setMoviesByQuery([]);
         }
         setMoviesByQuery(moviesByQuery);
       } catch (error) {
@@ -42,13 +53,15 @@ export default function MoviesPage() {
     });
   });
 
-  const handleSubmit = query => {
+  const handleSubmit = newQuery => {
+    if (query === newQuery) {
+      return;
+    }
+    setQuery(newQuery);
     history.push({
       ...location,
-      search: `query=${query}`,
+      search: `query=${newQuery}`,
     });
-    setQuery(query);
-    setMoviesByQuery([]);
   };
 
   return (
